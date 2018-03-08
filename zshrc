@@ -32,6 +32,9 @@ dstop() { docker stop $(docker ps -a -q); }
 # Remove all containers
 drm() { docker rm -f $(docker ps -a -q); }
 
+# Remove none docker images
+dirm(){ docker rmi  `docker images | grep none | awk '{print $3}'` }
+
 # Stop and Remove all containers
 alias drmf='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
 
