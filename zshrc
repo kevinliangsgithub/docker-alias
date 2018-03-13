@@ -49,3 +49,20 @@ dalias() { alias | grep 'docker' | sed "s/^\([^=]*\)=\(.*\)/\1 => \2/"| sed "s/[
 
 # Bash into running container
 dbash() { docker exec -it $(docker ps -aqf "name=$1") bash; }
+
+#rsync
+myrsync() {
+	if [ ! -n "$1" ] ;then
+		echo "please enter a type: "
+		echo "1.dp-data-system"
+		echo "2.dp-thrall "
+	else
+		if [ "$1" = "1" ] ;then
+			rsync -ar --delete --exclude='.git*'  --filter=':- .gitignore' /Users/kevin/CloudStation/root/datapipeline/workspace/dp-data-system root@testpub:~/projects
+		else
+			rsync -ar --delete --exclude='.git*'  --filter=':- .gitignore' /Users/kevin/CloudStation/root/datapipeline/workspace/dp-thrall root@testpub:~/projects
+		fi
+		
+	fi
+#	rsync -ar --delete --exclude='.git*'  --filter=':- .gitignore' /Users/kevin/CloudStation/root/datapipeline/workspace/$1 root@testpub:~/projects;
+}
