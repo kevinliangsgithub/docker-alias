@@ -56,11 +56,24 @@ myrsync() {
 		echo "please enter a type: "
 		echo "1.dp-data-system"
 		echo "2.dp-thrall "
+		echo "3.debezium "
+		echo "4.restService "
+		echo "5.startKit "
 	else
-		if [ "$1" = "1" ] ;then
+		if [ "$1" = "1" ]
+		then
 			rsync -ar --delete --exclude='.git*'  --filter=':- .gitignore' /Users/kevin/CloudStation/root/datapipeline/workspace/dp-data-system root@testpub:~/projects
-		else
+		elif [ "$1" = "2" ]
+		then
 			rsync -ar --delete --exclude='.git*'  --filter=':- .gitignore' /Users/kevin/CloudStation/root/datapipeline/workspace/dp-thrall root@testpub:~/projects
+		elif [ "$1" = "3" ]
+                then
+                        rsync -ar --delete --exclude='.git*'  --filter=':- .gitignore' /Users/kevin/CloudStation/root/datapipeline/workspace/debezium root@testpub:~/projects
+		elif [ "$1" = "4" ]
+                then
+                        rsync -ar --delete --exclude='.git*'  --filter=':- .gitignore' /Users/kevin/CloudStation/root/datapipeline/workspace/restService root@testpub:~/projects
+		else 
+			rsync -ar --delete --exclude='.git*'  --filter=':- .gitignore' /Users/kevin/CloudStation/root/datapipeline/workspace/DpStarterKit root@testpub:~/projects
 		fi
 		
 	fi
